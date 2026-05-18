@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: customer_lifetime_value
-    description: "This model identifies the most valuable customers by calculating their total spend, order frequency, average order value, true customer lifetime value and rank. It answers the question: Who are our most valuable customers?"
+    description: "This model identifies the most valuable customers by calculating their total spend, order frequency, average order value, true customer lifetime value and rank. Customers are segmented by loyalty and ranked within each segment using a weighted score of customer value and days as customer. It answers the question: Who are our most valuable customers?"
 
     columns:
       - name: customer_id
@@ -30,8 +30,19 @@ models:
         description: "True lifetime value calculated as customer value multiplied by customer lifespan in years"
         tests:
           - not_null
+      - name: customer_segment
+        description: "Segment based on customer lifespan days. Occasional = 0-4 days, Returning = 5-10 days, Loyal = 11-15 days"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['occasional', 'returning', 'loyal']
+      - name: weighted_score
+        description: "Ranking score calculated as customer value multiplied by days as customer. Rewards customers who both spend a lot and stay long"
+        tests:
+          - not_null
       - name: customer_rank
-        description: "Rank of the customer based on customer value, 1 being the most valuable"
+        description: "Rank of the customer within their segment based on weighted score, 1 being the most valuable"
         tests:
           - not_null
       - name: first_order_date
