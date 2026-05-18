@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: customer_lifetime_value
+    description: "This model identifies the most valuable customers by calculating their total spend, order frequency, average order value, true customer lifetime value and rank. It answers the question: Who are our most valuable customers?"
+
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Full name of the customer"
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Total number of orders placed by the customer"
+        tests:
+          - not_null
+      - name: average_order_value
+        description: "Average spend per order for the customer"
+        tests:
+          - not_null
+      - name: customer_value
+        description: "Total value of the customer calculated as average order value multiplied by total orders"
+        tests:
+          - not_null
+      - name: customer_lifetime_value
+        description: "True lifetime value calculated as customer value multiplied by customer lifespan in years"
+        tests:
+          - not_null
+      - name: customer_rank
+        description: "Rank of the customer based on customer value, 1 being the most valuable"
+        tests:
+          - not_null
+      - name: first_order_date
+        description: "Date of the customer's first order — marks when they became a customer"
+        tests:
+          - not_null
+      - name: most_recent_order_date
+        description: "Date of the customer's most recent order — marks last known activity"
+        tests:
+          - not_null
+      - name: days_as_customer
+        description: "Number of days between first and most recent order — measures customer lifespan"
+        tests:
+          - not_null
