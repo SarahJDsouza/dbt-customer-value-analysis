@@ -1,4 +1,4 @@
-# 🌸 Who Are Our Most Valuable Customers?
+# Who Are Our Most Valuable Customers?
 ### A dbt + BigQuery Analysis | Jaffle Shop Dataset | Q3 2016
 
 ![dbt](https://img.shields.io/badge/dbt-1.11.9-orange?style=flat-square&logo=dbt)
@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Analytics Question
+## Analytics Question
 
 > **"Who are our most valuable customers — and how do we define value?"**
 
@@ -16,7 +16,7 @@ This project uses dbt and BigQuery to answer this question by building a custome
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 university_workshop_starter_dbt/
@@ -44,7 +44,7 @@ university_workshop_starter_dbt/
 
 ---
 
-## 🏗️ Model Flow
+## Model Flow
 
 ```
 raw_customers (BigQuery)          raw_orders (BigQuery)
@@ -73,7 +73,7 @@ stg_customers                      stg_orders
 
 ---
 
-## 📊 Data Sources
+## Data Sources
 
 | Table | Rows | Description |
 |-------|------|-------------|
@@ -84,7 +84,7 @@ Both tables were loaded from Google Cloud Storage into BigQuery using the `bq lo
 
 ---
 
-## 🧮 How We Define Customer Value
+## How We Define Customer Value
 
 A valuable customer must score well on **all three dimensions**:
 
@@ -101,33 +101,33 @@ weighted_score = customer_value × total_orders × days_as_customer
 
 ---
 
-## 👥 Customer Segmentation
+## Customer Segmentation
 
 Customers are segmented by `days_as_customer` before ranking:
 
 | Segment | Days | Customers | % |
 |---------|------|-----------|---|
-| 🟠 Occasional | 0–4 days | 16 | 13% |
-| 🔵 Returning | 5–10 days | 31 | 24% |
-| 🟢 Loyal | 11–15 days | 81 | 63% |
+| Occasional | 0–4 days | 16 | 13% |
+| Returning | 5–10 days | 31 | 24% |
+| Loyal | 11–15 days | 81 | 63% |
 
 > Rankings are calculated **within each segment** using `rank() over (partition by customer_segment order by weighted_score desc)`
 
 ---
 
-## 🏆 Top Results
+## Top Results
 
 | Rank | Customer | Segment | Orders | Weighted Score |
 |------|----------|---------|--------|---------------|
-| #1 🏆 | Brenda Miller | LOYAL | 9 | 1,500,525 |
+| #1  | Brenda Miller | LOYAL | 9 | 1,500,525 |
 | #2 | Douglas Hill | LOYAL | 6 | 1,305,000 |
 | #3 | Pamela Lane | LOYAL | 8 | 1,139,600 |
-| #1 ⚡ | Ryan Byrd | OCCASIONAL | 2 | 111,294 |
-| #1 📈 | Jeffrey Love | RETURNING | 4 | 450,606 |
+| #1  | Ryan Byrd | OCCASIONAL | 2 | 111,294 |
+| #1  | Jeffrey Love | RETURNING | 4 | 450,606 |
 
 ---
 
-## ✅ Testing
+## Testing
 
 18 total checks passing across 3 models.
 
@@ -157,7 +157,7 @@ dbtf build --select stg_customers stg_orders customer_lifetime_value
 
 ---
 
-## 💡 Key Insights
+## Key Insights
 
 1. **63% of customers are loyal** — strong initial retention within a 15-day window
 2. **Frequency + loyalty beats pure spend** — Brenda Miller outranks Douglas Hill despite lower avg order value
@@ -167,17 +167,17 @@ dbtf build --select stg_customers stg_orders customer_lifetime_value
 
 ---
 
-## 🚀 Actionable Next Steps
+## Actionable Next Steps
 
 | Priority | Action | Target |
 |----------|--------|--------|
-| 🟢 High | VIP loyalty program | Customers with `weighted_score > 1,000,000` |
-| 🔵 High | Re-engagement campaign | 31 returning customers within 5 days |
-| 🟠 Medium | Personal outreach | Ryan Byrd — immediate contact |
+| High | VIP loyalty program | Customers with `weighted_score > 1,000,000` |
+| High | Re-engagement campaign | 31 returning customers within 5 days |
+| Medium | Personal outreach | Ryan Byrd — immediate contact |
 
 ---
 
-## ⚙️ Setup & Running
+## Setup & Running
 
 ### Prerequisites
 - Python 3.12+
@@ -237,7 +237,7 @@ foreach ($uri in $uris) {
 
 ---
 
-## 📁 Fact vs Dimension Tables
+## Fact vs Dimension Tables
 
 This project follows the **star schema** pattern:
 
@@ -250,7 +250,7 @@ The mart model aggregates the fact table and joins the dimension table — the c
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 **Sarah D'souza**
 Built as part of the dbt University Workshop — May 2026
